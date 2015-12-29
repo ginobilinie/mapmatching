@@ -1,3 +1,5 @@
+This project is to match GPS points onto digital maps, a very interesting project. In this task, the idea is mainly match them to the shortest route, and also we take topology information into consideration (for the adjacent points, we should choose a shortest way (time or distance) instead of just mapping into shortest route). There are also other considerations, if you are interested, please contact me, we can discuss.
+
 Run environment:
 1.Windows, matlab2012b or higher
 2. codes is all written by me, so there is no libarary dependencies.
