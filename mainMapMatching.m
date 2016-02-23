@@ -1,5 +1,3 @@
-%This script is written to compute the map matching for one trace, reveal the map matching results on the artificial network and
-%record the ways this trace passes
 function mainMapMatching()
 clear;
 clc;
@@ -38,11 +36,16 @@ end
 arc(1,:)=[0,3,1,0,0];
 %define trajectory
 
-inputfile='abboip_0';
+inputfile='abboip_1';
 Traces=load(inputfile);
 T=Traces(:,1:2);
 n=size(T,1);
-
+% T(1,:)=[0.1,3.5];
+% T(2,:)=[3,3.5];
+% T(3,:)=[5,2];
+% T(4,:)=[5,4.2];
+% T(5,:)=[4,1];
+% T(6,:)=[3,2];
 plot(T(:,1),T(:,2),'r*');
 hold on;
 I=MapMatching(seg,arc,T,n);%return the index of chosen segments
@@ -80,6 +83,9 @@ for i=1:numEdges-1
         targetInd=currEdgeInd(2);
     else
         fprintf('node error\n');
+    end
+    if sourceInd==targetInd%map to same road
+        continue;
     end
     [path cost] = dijkstra(graph,sourceInd,targetInd);
     dis=cost+(prevDis+currDis)/2;
@@ -129,5 +135,7 @@ hold off;
 save('wayIDCell.mat','wayIDCell');
 saveas(gcf,[inputfile, '.png']);
 end
+
+
 
 
